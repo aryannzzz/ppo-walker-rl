@@ -175,7 +175,7 @@ class Walker2DEnv(gym.Env):
                 w, h, view, proj,
                 physicsClientId=self._physics_client
             )
-            return np.array(px, dtype=np.uint8)[:, :, :3]
+            return np.array(px, dtype=np.uint8).reshape(h, w, 4)[:, :, :3]
         return None
 
     def close(self):
