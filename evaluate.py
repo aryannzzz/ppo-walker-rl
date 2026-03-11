@@ -116,7 +116,7 @@ def main():
         while not done:
             action, _ = model.predict(obs, deterministic=True)
             obs, reward, done, info = eval_env.step(action)
-            ep_reward += float(reward)
+            ep_reward += reward[0]
             ep_len += 1
             if record_video and ep == 0:
                 frame = eval_env.envs[0].render()
