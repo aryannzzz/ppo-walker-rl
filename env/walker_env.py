@@ -175,7 +175,14 @@ class Walker2DEnv(gym.Env):
                 w, h, view, proj,
                 physicsClientId=self._physics_client
             )
+            img = np.array(px, dtype=np.uint8)
+
             return np.array(px, dtype=np.uint8)[:, :, :3]
+            if img.ndim == 1:
+                width = 320
+                height = 240
+                img = img.reshape(height, width, 4)
+                return img[:, :, :3]
         return None
 
     def close(self):
